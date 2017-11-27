@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.forms import ModelForm
+
 
 # Create your models here.
 class Coach(models.Model):
@@ -74,3 +76,9 @@ class DjangoMigrations(models.Model):
     class Meta:
         managed = False
         db_table = 'django_migrations'
+
+
+class JoueurForm(ModelForm):
+	class Meta:
+		model = Joueur
+		fields = ['id_joueur','nom','prenom','age','taille','poste','status','disponible','position']
