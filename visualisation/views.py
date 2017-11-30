@@ -33,7 +33,7 @@ def view_article(request, id_article):
 
     return render(request,'visualisation/testos.html',locals())
 
-#@csrf_exempt
+@csrf_exempt
 def supprimer(request):
 	id=request.POST.get('id', None)
 	Joueur.objects.filter(id_joueur=id).delete()
