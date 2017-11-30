@@ -27,4 +27,5 @@
 	: git push origin master
 	
 #Pour récuperer les mises à jour du dépôt github :
-	git pull
+	sudo git pull
+
