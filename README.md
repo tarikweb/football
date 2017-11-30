@@ -1,6 +1,30 @@
 # football
 
+#Pour faire fonctionner mysql avec python :
+ sudo apt-get install python-mysqldb
+
 #Pour installer la base de donnée : 
-# mysql -u root -p
-# source chemin/vers/football/documents_annexes/football.sql
+ il faut installer mysql s'il n'est pas installer :
+	sudo apt-get install mysql-server
+ mysql -u root -p
+ source chemin/vers/football/documents_annexes/football.sql
 # faut remplacer chemin/vers par le chemin complet jusqu'au fichier :)
+# Si vous n'y arrivez pas, utilisez PHPmyAdmin
+
+#Pour récupérer le dépôt github :
+	# installer git s'il n'est pas installé :
+		sudo apt-get install git
+ [user@machine:~]$ sudo bash
+ [root@machine:~]#  cd /var/www/ 
+ [root@machine:/var/www]#  git clone https://github.com/tarikweb/football
+ [root@machine:/var/www]#  cd football
+ [root@machine:/var/www/football]#  git checkout master
+
+#Pour envoyer ses modifications sur github :
+	#si on veut envoyer les modifs d'un fichier : git add cheminDuFichier
+	#si on veut envoyer toutes ses modifs : git add --all
+  #Puis : git commit -m "message qui indique ce qu'on fait"
+	: git push origin master
+	
+#Pour récuperer les mises à jour du dépôt github :
+	git pull

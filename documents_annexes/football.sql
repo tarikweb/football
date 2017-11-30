@@ -19,6 +19,8 @@ grant all privileges on football.* to 'football'@'localhost';
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
+use football;
+
 --
 -- Database: `football`
 --
