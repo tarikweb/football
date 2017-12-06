@@ -5,15 +5,31 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> 
+  <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <style>
 	#composition{
 		width:45%;
 	}
 </style>
-<h1>test visu</h1>
+<body>
+<h2><center>Gestions d'equipes M2L </center></h2>
+<nav>
+<div class="table">
+<ul>
+<li class="menu-pre"><a href="#">Accueil</a></li>
+<li class="menu-eq"><a href="#">Mon equipe  </a></li>
+<li class ="menutab"> <a href="#">Classement</a></li>
+
+<li class ="menu-class"><a href="#"> Resultat </a></li>
+<li class ="menucal"><a href="#"> Calendrier</a></li>
+
+</div>
+</nav>
+<h2>Mes joueurs </h2>
 <section id="composition">
-<table class="table table-hover table-dark">
+  <br><br>
+ <table class="table table-hover table-dark">
 {% for joueur in joueurs %}
 
     <tr num="{{ joueur.id_joueur }}">
@@ -28,6 +44,7 @@
     <p class="empty">Pas de commentaires pour le moment.</p>
 
 {% endfor %}
+
 </table>
 </section>
 <i class="fa fa-user-plus" aria-hidden="true"></i>
@@ -49,10 +66,10 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
         <button type="button" class="btn btn-primary">Enregister</button>
       </div>
-    </div>
+    </div></center>
   </div>
 </div>
-
+</body>
 </html>
 
 <script type="text/javascript">
