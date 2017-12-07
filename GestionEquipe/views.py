@@ -4,9 +4,15 @@ from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render
-from visualisation.models import Joueur
+
+from GestionEquipe.models import Joueur
+from GestionEquipe.models import Equipe
+from GestionEquipe.models import Statistique
+
 from pprint import pprint
 from django.views.decorators.csrf import csrf_exempt
+from .forms import classementForm
+
 
 # Create your views here.
 
@@ -14,10 +20,22 @@ def home(request):
     """ Exemple de page HTML, non valide pour que l'exemple soit concis """
     text = """<h1>Bienvenue sur mon blog !</h1>
               <p>Les crêpes bretonnes ça tue des mouettes en plein vol !</p>"""
-    joueurs=Joueur.objects.all()
+    joueurs = Joueur.objects.all().filter().order_by('position')
 
     #return HttpResponse(text)
-    return render(request,'visualisation/visu.html',locals())
+    return render(request,'GestionEquipe/visu.html',locals())
+
+def classement(request):
+    
+    joueurs = Joueur.objects.all().filter().order_by('nom')
+    equipes = Equipe.objects.all()
+    statistiques = Statistique.objects.all()
+
+    form = classementForm(request.POST)
+    if form.is_valid():
+        form.save()
+        
+    return render(request,'GestionEquipe/classement.html',locals())    
 
 def view_article(request, id_article):
 
@@ -31,7 +49,7 @@ def view_article(request, id_article):
 
     """
 
-    return render(request,'visualisation/testos.html',locals())
+    return render(request,'GestionEquipe/testos.html',locals())
 
 @csrf_exempt
 def supprimer(request):

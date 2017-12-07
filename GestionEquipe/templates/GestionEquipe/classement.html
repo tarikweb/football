@@ -1,0 +1,41 @@
+<html>
+
+<h1> Page de tests </h1> 
+
+<p> <b> Formulaire </b> </p> 
+<form action="{% url "classement" %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+
+<p> <b> Classement Equipe </b> </p>
+<table>
+
+	{% for i in equipes %}
+
+	<tr num="{{ equipe.id_equipe }}">
+	    <td> {{ i.nom }} </td>
+	</tr>
+	    
+	 {% endfor %}
+
+</table>
+
+
+<p> <b> Statistiques Joueur </b> </p> 
+
+<table border>
+	{% for j in statistiques %}	
+	<tr><th> Temps de jeu </th>
+		<td>{{ j.temps_jeu }}</td></tr>
+	<tr><th> But </th>
+		<td>{{ j.but }}</td></tr>
+	<tr><th> Passe decisive </th>
+		<td>{{ j.passe_decisive }}</td> </tr>
+	<tr><th> Match dispute </th>
+		<td>{{ j.match_dispute }}</td></tr>
+	{% endfor %}	
+</table>
+
+</html>

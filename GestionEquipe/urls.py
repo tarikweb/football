@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^$', views.home),
     url(r'^article/(?P<id_article>\d+)$', views.view_article),
     url(r'^ajax/supprimer/$', views.supprimer, name='supprimer'),
+    url(r'^classement$', views.classement, name='classement'),
     ]
 
 
