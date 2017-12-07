@@ -33,6 +33,21 @@ table {
 	display:: table;
 	margin:auto;
 	}
+
+.inlineMenu li{
+	display: inline;
+	margin : 2%;
+}
+
+a{
+	text-decoration: none;
+}
+
+a:hover{
+  	text-decoration: none;
+}
+
+	
 nav
 {
 	display: inline-block;
@@ -41,6 +56,7 @@ nav
 	left:auto;
 	
 }
+
 nav li{
 	liste-style-type:none;
 	float:left;
@@ -79,6 +95,7 @@ nav li
 {
 	display:none;
 }
+
 nav a 
 {
 	
