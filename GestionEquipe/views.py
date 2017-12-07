@@ -13,7 +13,7 @@ from pprint import pprint
 from django.views.decorators.csrf import csrf_exempt
 from .forms import classementForm
 
-
+#test
 # Create your views here.
 
 def home(request):
