@@ -6,3 +6,9 @@ class classementForm(forms.ModelForm):
         model = Joueur
         #fields = '__all__'
         exclude = ['id_joueur']
+
+class modifJoueurForm(forms.ModelForm):
+    class Meta:
+        model = Joueur
+        #fields = '__all__'
+        exclude = ['id_joueur','poste','id_equipe']        

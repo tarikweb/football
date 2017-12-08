@@ -34,6 +34,8 @@ def classement(request):
     form = classementForm(request.POST)
     if form.is_valid():
         form.save()
+
+    formModifier = modifJoueurForm(request.POST)
         
     return render(request,'GestionEquipe/classement.html',locals())    
 
@@ -58,3 +60,12 @@ def supprimer(request):
 	if request.method== "POST":
 		reponse="ok"
 		return JsonResponse({'reponse' : 'reponse'})
+
+#def ajouter(request, id_article):
+
+
+#def modifier(request, id_article):
+
+
+#def visualiser(request, id_article):
+
