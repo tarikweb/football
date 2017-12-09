@@ -54,7 +54,7 @@
         <!--- <td> {{ joueur.status }} </td> -->
       
         <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_joueur }})"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-        <td><button id="myInput" type="button" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+        <td><button id="myInput" type="button" data-toggle="modal" data-target="#myModal" onclick="remplirModifier({{ joueur.id_joueur }})"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></button></td>
     </tr>
     {% endif %}
 {% empty %}
@@ -80,8 +80,8 @@
         <td> {{ joueur.nom }} </td>
         <!--- <td> {{ joueur.status }} </td> -->
       
-        <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_joueur }})"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-        <td><button id="myInput" type="button" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+        <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_joueur }})"><i class="fa fa-trash" aria-hidden="true" ></i></button></td>
+        <td><button id="myInput" type="button" data-toggle="modal" data-target="#myModal" onclick="remplirModifier({{ joueur.id_joueur }})"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
     </tr>
     {% endif %}
 {% empty %}
@@ -107,7 +107,7 @@
         <!--- <td> {{ joueur.status }} </td> -->   
 
         <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_joueur }})"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-        <td><button id="myInput" type="button" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+        <td><button id="myInput" type="button" data-toggle="modal" data-target="#myModal" onclick="remplirModifier({{ joueur.id_joueur }})"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></button></td>
     </tr>
     {% endif %}
 {% empty %}
@@ -132,7 +132,12 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+           <form id="modifForm" action="{% url "modifier" %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id_joueur" id="id_id_joueur">
+            {{ formEquipe.as_p }}
+         <input type="submit" value="Submit" />
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -225,5 +230,51 @@ $.ajaxSetup({
               	
             });
                         };
+
+function remplirModifier(id){  // CLICK SUPPRIMER
+   
+    $.ajax({  // AJAX SUPPRESSION
+                type: 'POST',
+                url: 'ajax/modifierRemplir/',
+                data: { 'id' : id},
+                dataType: 'json',
+                encode: true
+            }).done(function(data) {
+                console.log(data)
+               $('#id_id_joueur').val(data.id);
+               $('#id_nom').val(data.nom);
+               $('#id_prenom').val(data.prenom);
+               $('#id_age').val(data.age);
+               $('#id_taille').val(data.taille);
+               $('#id_poste').val(data.poste);
+               $('#id_disponible').val(data.disponible);
+                
+            });
+                        };
+
+      
+$("#modifForm").submit(function( event ) {
+    var donnees=$("#modifForm").serialize();
+    console.log(donnees)
+  $.ajax({  // AJAX SUPPRESSION
+                type: 'POST',
+                url: 'ajax/modifier/',
+                data: { 'donnees' : donnees},
+                dataType: 'json',
+                encode: true
+            }).done(function(data) {
+                console.log(data)
+               /*$('#id_id_joueur').val(data.id);
+               $('#id_nom').val(data.nom);
+               $('#id_prenom').val(data.prenom);
+               $('#id_age').val(data.age);
+               $('#id_taille').val(data.taille);
+               $('#id_poste').val(data.poste);
+               $('#id_disponible').val(data.disponible);*/
+                
+            });
+                       
+  event.preventDefault();
+});              
 
 </script>
