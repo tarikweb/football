@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^ajax/supprimer/$', views.supprimer, name='supprimer'),
     url(r'^ajax/modifierRemplir/$', views.modifierRemplir, name='modifierRemplir'),
     url(r'^ajax/modifier/$', views.modifier, name='modifier'),
+    url(r'^ajouter/$', views.ajouter, name='ajouter'),
     url(r'^classement$', views.classement, name='classement'),
 
     ]

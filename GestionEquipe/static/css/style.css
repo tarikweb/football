@@ -147,3 +147,27 @@ color:blue;
 
  }
 
+#add:hover{
+	cursor : pointer;
+}
+
+#ajouterForm label,  #modifForm label{
+	width: 40%;
+}
+
+#ajouterForm input,  #modifForm input{
+	width:55%;
+}
+
+#composition{
+	text-align: center;
+}
+
+#corps{
+	text-align: center;
+}
+
+#composition{
+	width:50%;
+    margin-left:10%;
+}

@@ -13,4 +13,13 @@ class modifierForm(forms.ModelForm):
 
 		model = Joueur
 		fields = '__all__'
-		exclude = ['id_joueur','status', 'id_equipe','position']
+		exclude = ['status', 'id_equipe','position']
+
+class ajouterForm(forms.ModelForm):
+
+	class Meta:
+
+		model = Joueur
+		fields = '__all__'
+		exclude = ['id_joueur']
+		#exclude = ['status', 'id_equipe','position']

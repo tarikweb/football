@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 from GestionEquipe.models import Joueur
 from GestionEquipe.models import Equipe
@@ -13,6 +14,7 @@ from pprint import pprint
 from django.views.decorators.csrf import csrf_exempt
 from .forms import classementForm
 from .forms import modifierForm
+from .forms import ajouterForm
 
 #test
 # Create your views here.
@@ -24,6 +26,7 @@ def home(request):
               <p>Les crêpes bretonnes ça tue des mouettes en plein vol !</p>"""
     joueurs = Joueur.objects.all().filter().order_by('position')
     formEquipe=modifierForm(request.POST)
+    formAjouter=ajouterForm(request.POST)
     #return HttpResponse(text)
     return render(request,'GestionEquipe/visu.html',locals())
 
@@ -95,8 +98,19 @@ def modifier(request):
     #id=request.POST.get('donnees', None)
     formEquipe= modifierForm(request.POST)
     if formEquipe.is_valid():
-        formEquipe.save()
+        test=formEquipe.save()
+        test.save()
         reponse="ok"
     else:
         reponse="nannn"
-    return JsonResponse({'reponse' : 'reponse'})
+    return JsonResponse({'reponse' : reponse})
+
+def ajouter(request):
+    #id=request.POST.get('donnees', None)
+    formAjouter= ajouterForm(request.POST)
+    if formAjouter.is_valid():
+        formAjouter.save()
+        reponse="ok"
+    else:
+        reponse="nannn"
+    return redirect('../../GestionEquipe/GestionEquipe')
