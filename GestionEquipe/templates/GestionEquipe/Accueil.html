@@ -7,10 +7,12 @@
 {% block content %} 
 <h1> bienvenue sur la page d'accueil</h1>
 
-<!-- 
-
-La on doit mettre un contenu bonjour quelque chose du gennre je pense mettre le logo de m2l etles infos 
--->
+<form method="post"  role="form" action="/">
+{% csrf_token %}
+<input type="text" name="username" placeholder="Utilisateur">
+<input type="password" name="password" placeholder="Mot de passe">
+<input type="submit" value="login" />
+</form>
 
 {% endblock %}
 
