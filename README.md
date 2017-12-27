@@ -40,4 +40,6 @@
 #Lancer serveur de test en étant dans la racine du projet (avec manage.py)
  sudo python manage.py runserver
 
+ #pour django admin le superuser est "football" et son mdp est "fpassword" 
+
 
