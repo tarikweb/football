@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'football.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'football',
+        'NAME': 'e4_football',
         'USER': 'football',            # Utilisateur
         'PASSWORD': 'password',        # Mot de passe si necessaire
         'HOST': '127.0.0.1', 

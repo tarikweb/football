@@ -16,10 +16,10 @@
         <th colspan="2">Nom</th>
     </tr>     
 {% for joueur in joueurs %}
-    {% if joueur.status == 1 %}
+    {% if joueur.j_status == "Titulaire" %}
     <tr num="{{ joueur.id_joueur }}">
-        <td> {{ joueur.poste }} </td>
-        <td> {{ joueur.nom }} </td>
+        <td> {{ joueur.j_poste }} </td>
+        <td> {{ joueur.j_nom }} </td>
         <!--- <td> {{ joueur.status }} </td> -->
       
         <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_joueur }})"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
@@ -45,10 +45,10 @@
         <th colspan="2">Nom</th>
     </tr>     
 {% for joueur in joueurs %}
-    {% if joueur.status == 2 %}
-    <tr num="{{ joueur.id_joueur }}"> 
-        <td> {{ joueur.poste }} </td>
-        <td> {{ joueur.nom }} </td>
+    {% if joueur.j_status == "Remplaçant" %}
+    <tr num="{{ joueur.id_joueur }}">
+        <td> {{ joueur.j_poste }} </td>
+        <td> {{ joueur.j_nom }} </td>
         <!--- <td> {{ joueur.status }} </td> -->
       
         <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_joueur }})"><i class="fa fa-trash" aria-hidden="true" ></i></button></td>
@@ -73,10 +73,10 @@
         <th colspan="2">Nom</th>
     </tr> 
 {% for joueur in joueurs %}
-    {% if joueur.status == 3 %}
+    {% if joueur.j_status == "Réserviste" %}
     <tr num="{{ joueur.id_joueur }}">
-        <td> {{ joueur.poste }} </td>
-        <td> {{ joueur.nom }} </td>
+        <td> {{ joueur.j_poste }} </td>
+        <td> {{ joueur.j_nom }} </td>
         <!--- <td> {{ joueur.status }} </td> -->   
 
         <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_joueur }})"><i class="fa fa-trash" aria-hidden="true"></i></button></td>

@@ -12,10 +12,12 @@
 {% csrf_token %}
 <input type="text" name="username" placeholder="Utilisateur">
 <input type="password" name="password" placeholder="Mot de passe">
-<input type="submit" value="login" />
+<input type="submit" value="Se connecter" />
+{% csrf_token %}
+
+    {{ form.as_p }}
+
 </form>
-
-
 
 
 {% if error %}
@@ -31,15 +33,6 @@ Vous êtes connecté, {{ user.username }} !
 
 {% else %}
 
-<form method="post" action=".">
-
-    {% csrf_token %}
-
-    {{ form.as_p }}
-
-    <input type="submit" value="Se connecter" />
-
-</form>
 
 {% endif %}
 {% endblock %}

@@ -5,16 +5,22 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.views.generic import TemplateView
+from django.conf import settings
 
 from GestionEquipe.models import Joueur
 from GestionEquipe.models import Equipe
-from GestionEquipe.models import Statistique
+from GestionEquipe.models import Statistiques
+from GestionEquipe.models import Arbitre
+from GestionEquipe.models import Entraineur
+
 
 from pprint import pprint
 from django.views.decorators.csrf import csrf_exempt
 from .forms import classementForm
 from .forms import modifierForm
 from .forms import ajouterForm
+
 
 #test
 # Create your views here.
@@ -24,7 +30,7 @@ def home(request):
     """ Exemple de page HTML, non valide pour que l'exemple soit concis """
     text = """<h1>Bienvenue sur mon blog !</h1>
               <p>Les crêpes bretonnes ça tue des mouettes en plein vol !</p>"""
-    joueurs = Joueur.objects.all().filter().order_by('position')
+    joueurs = Joueur.objects.all().filter()
     formEquipe=modifierForm(request.POST)
     formAjouter=ajouterForm(request.POST)
     #return HttpResponse(text)
@@ -34,7 +40,7 @@ def classement(request):
     
     joueurs = Joueur.objects.all().filter().order_by('nom')
     equipes = Equipe.objects.all()
-    statistiques = Statistique.objects.all()
+    statistiques = Statistiques.objects.all()
 
     form = classementForm(request.POST)
     if form.is_valid():
@@ -114,3 +120,31 @@ def ajouter(request):
     else:
         reponse="nannn"
     return redirect('../../GestionEquipe/GestionEquipe')
+
+
+
+class LoginView(TemplateView):
+
+  template_name = '/template/GestionEquipe/Accueil.html'
+
+  def post(self, request, **kwargs):
+
+    username = request.POST.get('username', False)
+    password = request.POST.get('password', False)
+    user = authenticate(username=username, password=password)
+    if user is not None and user.is_active:
+        login(request, user)
+        return HttpResponseRedirect( settings.LOGIN_REDIRECT_URL )
+
+    return render(request, self.template_name)
+
+
+class LogoutView(TemplateView):
+
+  template_name = '/template/GestionEquipe/Accueil.html'
+
+  def get(self, request, **kwargs):
+
+    logout(request)
+
+    return render(request, self.template_name)

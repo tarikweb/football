@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-admin.autodiscover()   
+admin.autodiscover()  
 #from django.contrib import admin
 #from visualisation import views
 
 urlpatterns = [
    # url(r'^admin/', admin.site.urls),
    	url(r'^admin/', include (admin.site.urls)),
+    url(r'', include('GestionEquipe.urls')),
     url(r'^GestionEquipe/', include('GestionEquipe.urls')),
 
 ]
