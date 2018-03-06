@@ -6,6 +6,7 @@
   
 {% block content %} 
 <h1> bienvenue sur la page d'accueil</h1>
+<h2> Se connecter </h2>
 
 <form method="post"  role="form" action="/">
 {% csrf_token %}
@@ -14,6 +15,33 @@
 <input type="submit" value="login" />
 </form>
 
+
+
+
+{% if error %}
+
+<p><strong>Nom d'utilisateur ou mot de passe incorrect</strong></p>
+
+{% endif %}
+
+
+{% if user.is_authenticated %}
+
+Vous êtes connecté, {{ user.username }} !
+
+{% else %}
+
+<form method="post" action=".">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <input type="submit" value="Se connecter" />
+
+</form>
+
+{% endif %}
 {% endblock %}
 
 </body>

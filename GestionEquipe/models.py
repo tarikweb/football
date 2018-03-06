@@ -56,6 +56,7 @@ class Statistique(models.Model):
         db_table = 'Statistique'
 
 
+
 class DjangoMigrations(models.Model):
     app = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
