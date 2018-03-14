@@ -8,7 +8,7 @@
 <h1> bienvenue sur la page d'accueil</h1>
 <h2> Se connecter </h2>
 
-<form method="post"  role="form" action="/">
+<form method="post"  role="form" action="/admin/login/?next=/admin/">
 {% csrf_token %}
 <input type="text" name="username" placeholder="Utilisateur">
 <input type="password" name="password" placeholder="Mot de passe">
@@ -29,7 +29,7 @@
 
 {% if user.is_authenticated %}
 
-Vous êtes connecté, {{ user.username }} !
+Vous êtes connecté, {{ user.id}} !
 
 {% else %}
 

@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware', 
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
 ]
 
 ROOT_URLCONF = 'football.urls'
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'football.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '/var/www/football/GestionEquipe/templates/GestionEquipe/')],
+        'DIRS': [os.path.join(BASE_DIR, '../football/GestionEquipe/templates/GestionEquipe/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': 'e4_football',
         'USER': 'football',            # Utilisateur
         'PASSWORD': 'password',        # Mot de passe si necessaire
-        'HOST': '127.0.0.1', 
+        'HOST': '127.0.0.1',
         'PORT': '',
     }
 }

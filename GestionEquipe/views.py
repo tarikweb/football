@@ -13,6 +13,7 @@ from GestionEquipe.models import Equipe
 from GestionEquipe.models import Statistiques
 from GestionEquipe.models import Arbitre
 from GestionEquipe.models import Entraineur
+from GestionEquipe.models import Entraineur
 
 
 from pprint import pprint
@@ -25,19 +26,18 @@ from .forms import ajouterForm
 #test
 # Create your views here.
 
-
 def home(request):
     """ Exemple de page HTML, non valide pour que l'exemple soit concis """
+
     text = """<h1>Bienvenue sur mon blog !</h1>
               <p>Les crêpes bretonnes ça tue des mouettes en plein vol !</p>"""
     joueurs = Joueur.objects.all().filter()
-    formEquipe=modifierForm(request.POST)
     formAjouter=ajouterForm(request.POST)
     #return HttpResponse(text)
     return render(request,'GestionEquipe/visu.html',locals())
 
 def classement(request):
-    
+
     joueurs = Joueur.objects.all().filter().order_by('nom')
     equipes = Equipe.objects.all()
     statistiques = Statistiques.objects.all()
@@ -45,12 +45,12 @@ def classement(request):
     form = classementForm(request.POST)
     if form.is_valid():
         form.save()
-        
-    return render(request,'GestionEquipe/classement.html',locals())    
+
+    return render(request,'GestionEquipe/classement.html',locals())
 
 def view_article(request, id_article):
 
-    """ 
+    """
 
     Vue qui affiche un article selon son identifiant (ou ID, ici un numéro)
 
@@ -74,8 +74,6 @@ def Accueil(request):
     """ Exemple de page HTML, non valide pour que l'exemple soit concis """
     text = """<h1>Bienvenue sur mon blog !</h1>
               <p>Les crêpes bretonnes ça tue des mouettes en plein vol !</p>"""
-    
-
     #return HttpResponse(text)
     return render(request,'GestionEquipe/Accueil.html',locals())
 

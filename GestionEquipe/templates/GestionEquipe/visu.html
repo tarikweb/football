@@ -2,28 +2,31 @@
 {% extends "base.html" %}
 <!--- pour ajouter des liens il faut les mettres dans base.html qui represente le head  et tout les contenu doivent etre dans block content qui est le body   -->
 
-  
+
 {% block content %}
 
 <h1>Gestion d'équipe</h1>
-<br> </br> 
+<br> </br>
 <div id="corps">
 <section id="composition">
 <table class="table table-hover table-dark">
-<h2> Titulaires </h2> 
+<h2> Titulaires </h2>
     <tr>
         <th> Poste </th>
         <th colspan="2">Nom</th>
-    </tr>     
+    </tr>
 {% for joueur in joueurs %}
     {% if joueur.j_status == "Titulaire" %}
     <tr num="{{ joueur.id_joueur }}">
         <td> {{ joueur.j_poste }} </td>
         <td> {{ joueur.j_nom }} </td>
+        <td> {{ joueur.id_equipe }} </td>
+
         <!--- <td> {{ joueur.status }} </td> -->
-      
-        <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_joueur }})"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-        <td><button id="myInput" type="button" data-toggle="modal" data-target="#myModal" onclick="remplirModifier({{ joueur.id_joueur }})"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></button></td>
+
+        <td><button id="myInput" type="button" data-toggle="modal" data-target="#myModal" onclick="remplirModifier({{ joueur.id_joueur }})"><i class="fa fa-pencil-square-o" aria-hidden="true" >
+        <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_iquipe }})"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+        </i></button></td>
         <td><button id="visualisation" type="button" data-toggle="modal" data-target="#modalVisu"><i class="fa fa-address-card" aria-hidden="true"></i>
 </button></td>
     </tr>
@@ -43,14 +46,14 @@
     <tr>
         <th> Poste </th>
         <th colspan="2">Nom</th>
-    </tr>     
+    </tr>
 {% for joueur in joueurs %}
     {% if joueur.j_status == "Remplaçant" %}
     <tr num="{{ joueur.id_joueur }}">
         <td> {{ joueur.j_poste }} </td>
         <td> {{ joueur.j_nom }} </td>
         <!--- <td> {{ joueur.status }} </td> -->
-      
+
         <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_joueur }})"><i class="fa fa-trash" aria-hidden="true" ></i></button></td>
         <td><button id="myInput" type="button" data-toggle="modal" data-target="#myModal" onclick="remplirModifier({{ joueur.id_joueur }})"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
         <td><button id="visualisation" type="button" data-toggle="modal" data-target="#modalVisu"><i class="fa fa-address-card" aria-hidden="true"></i>
@@ -71,13 +74,13 @@
     <tr>
         <th> Poste </th>
         <th colspan="2">Nom</th>
-    </tr> 
+    </tr>
 {% for joueur in joueurs %}
     {% if joueur.j_status == "Réserviste" %}
     <tr num="{{ joueur.id_joueur }}">
         <td> {{ joueur.j_poste }} </td>
         <td> {{ joueur.j_nom }} </td>
-        <!--- <td> {{ joueur.status }} </td> -->   
+        <!--- <td> {{ joueur.status }} </td> -->
 
         <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_joueur }})"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
         <td><button id="myInput" type="button" data-toggle="modal" data-target="#myModal" onclick="remplirModifier({{ joueur.id_joueur }})"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></button></td>
@@ -137,7 +140,7 @@
             {% csrf_token %}
             <!--<input type="hidden" name="id_joueur" id="id_id_joueur">-->
             {{ formAjouter.as_p }}
-         
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -173,7 +176,7 @@
 
 <script type="text/javascript">
   $('#myModal').on('shown.bs.modal', function () {
-    
+
   $('#myInput').focus()
 })
   // using jQuery
@@ -210,7 +213,7 @@ function csrfSafeMethod(method) {
 
 //$.ajaxSetup({   headers: {  "X-CSRFToken": csrftoken  }  });
 
-$.ajaxSetup({ 
+$.ajaxSetup({
      beforeSend: function(xhr, settings) {
          function getCookie(name) {
              var cookieValue = null;
@@ -231,14 +234,14 @@ $.ajaxSetup({
              // Only send the token to relative URLs i.e. locally.
              xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
          }
-     } 
+     }
 });
 
 //var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
 
   //$('[num="1"]').attr("color","red");
   function Supprimer(id){  // CLICK SUPPRIMER
-    
+
     $.ajax({  // AJAX SUPPRESSION
                 type: 'POST',
                 url: 'ajax/supprimer/',
@@ -248,12 +251,12 @@ $.ajaxSetup({
             }).done(function(data) {
               alert(data.reponse)
                $('[num="'+id+'"]').remove();
-                
+
             });
                         };
 
 function remplirModifier(id){  // CLICK SUPPRIMER
-   
+
     $.ajax({  // AJAX SUPPRESSION
                 type: 'POST',
                 url: 'ajax/modifierRemplir/',
@@ -269,11 +272,11 @@ function remplirModifier(id){  // CLICK SUPPRIMER
                $('#id_taille').val(data.taille);
                $('#id_poste').val(data.poste);
                $('#id_disponible').val(data.disponible);
-                
+
             });
                         };
 
-      
+
 $("#modifForm").submit(function( event ) {
     var donnees=$("#modifForm").serialize();
     console.log(donnees)
@@ -292,11 +295,11 @@ $("#modifForm").submit(function( event ) {
                $('#id_taille').val(data.taille);
                $('#id_poste').val(data.poste);
                $('#id_disponible').val(data.disponible);*/
-                
+
             });
-                       
+
   event.preventDefault();
-});              
+});
 
 </script>
 
