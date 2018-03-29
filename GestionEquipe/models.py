@@ -146,7 +146,7 @@ class Equipe(models.Model):
         db_table = 'equipe'
 
     def __unicode__(self):
-            return u'%s ' % ( self.id_equipe)
+            return u'%s ' % ( self.e_nom)
 
 
 class Joueur(models.Model):
