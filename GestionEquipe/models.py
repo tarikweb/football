@@ -145,6 +145,9 @@ class Equipe(models.Model):
         managed = False
         db_table = 'equipe'
 
+    def __unicode__(self):
+            return u'%s ' % ( self.id_equipe)
+
 
 class Joueur(models.Model):
     id_joueur = models.AutoField(db_column='Id_Joueur', primary_key=True)  # Field name made lowercase.
@@ -174,4 +177,3 @@ class Statistiques(models.Model):
     class Meta:
         managed = False
         db_table = 'statistiques'
-

@@ -33,6 +33,7 @@ def home(request):
               <p>Les crêpes bretonnes ça tue des mouettes en plein vol !</p>"""
     joueurs = Joueur.objects.all().filter()
     formAjouter=ajouterForm(request.POST)
+
     #return HttpResponse(text)
     return render(request,'GestionEquipe/visu.html',locals())
 
@@ -70,6 +71,29 @@ def supprimer(request):
 		reponse="ok"
 		return JsonResponse({'reponse' : 'reponse'})
 
+@csrf_exempt
+def infoJoueur(request):
+    id=request.POST.get('id', None)
+    joueurs = Joueur.objects.all().filter(id_joueur=id)
+    for joueur in joueurs:
+        nom=joueur.j_nom
+        prenom=joueur.j_prenom
+        age=joueur.j_age
+        taille=joueur.j_taille
+        poste=joueur.j_poste
+        disponible=joueur.j_disponible
+
+    return JsonResponse({
+            'id' : id,
+            'nom' : nom,
+            'prenom' : prenom,
+            'age' : age,
+            'taille' : taille,
+            'poste' : poste,
+            'disponible' : disponible,
+            })
+
+
 def Accueil(request):
     """ Exemple de page HTML, non valide pour que l'exemple soit concis """
     text = """<h1>Bienvenue sur mon blog !</h1>
@@ -81,12 +105,12 @@ def modifierRemplir(request):
     id=request.POST.get('id', None)
     joueurs = Joueur.objects.all().filter(id_joueur=id)
     for joueur in joueurs:
-        nom=joueur.nom
-        prenom=joueur.prenom
-        age=joueur.age
-        taille=joueur.taille
-        poste=joueur.poste
-        disponible=joueur.disponible
+        nom=joueur.j_nom
+        prenom=joueur.j_prenom
+        age=joueur.j_age
+        taille=joueur.j_taille
+        poste=joueur.j_poste
+        disponible=joueur.j_disponible
 
     return JsonResponse({
             'id' : id,

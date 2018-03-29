@@ -25,9 +25,9 @@
         <!--- <td> {{ joueur.status }} </td> -->
 
         <td><button id="myInput" type="button" data-toggle="modal" data-target="#myModal" onclick="remplirModifier({{ joueur.id_joueur }})"><i class="fa fa-pencil-square-o" aria-hidden="true" >
-        <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_iquipe }})"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+        <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_joueur }})"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
         </i></button></td>
-        <td><button id="visualisation" type="button" data-toggle="modal" data-target="#modalVisu"><i class="fa fa-address-card" aria-hidden="true"></i>
+        <td><button id="visualisation" onclick="infoJoueur({{ joueur.id_joueur }})"  type="button" data-toggle="modal" data-target="#modalVisu"><i class="fa fa-address-card" aria-hidden="true"></i>
 </button></td>
     </tr>
     {% endif %}
@@ -56,7 +56,7 @@
 
         <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_joueur }})"><i class="fa fa-trash" aria-hidden="true" ></i></button></td>
         <td><button id="myInput" type="button" data-toggle="modal" data-target="#myModal" onclick="remplirModifier({{ joueur.id_joueur }})"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
-        <td><button id="visualisation" type="button" data-toggle="modal" data-target="#modalVisu"><i class="fa fa-address-card" aria-hidden="true"></i>
+        <td><button id="visualisation" onclick="infoJoueur({{ joueur.id_joueur }})" type="button" data-toggle="modal" data-target="#modalVisu"><i class="fa fa-address-card" aria-hidden="true"></i>
 </button></td>
     </tr>
     {% endif %}
@@ -84,7 +84,7 @@
 
         <td><button type="button" value="Supprimer" id="Supprimer" onclick="Supprimer({{ joueur.id_joueur }})"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
         <td><button id="myInput" type="button" data-toggle="modal" data-target="#myModal" onclick="remplirModifier({{ joueur.id_joueur }})"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></button></td>
-        <td><button id="visualisation" type="button" data-toggle="modal" data-target="#modalVisu"><i class="fa fa-address-card" aria-hidden="true"></i>
+        <td><button id="visualisation" onclick="infoJoueur({{ joueur.id_joueur }})" type="button" data-toggle="modal" data-target="#modalVisu"><i class="fa fa-address-card" aria-hidden="true"></i>
 </button></td>
     </tr>
     {% endif %}
@@ -255,6 +255,20 @@ $.ajaxSetup({
             });
                         };
 
+function infoJoueur(id){  // CLICK SUPPRIMER
+
+  $.ajax({  // AJAX SUPPRESSION
+              type: 'POST',
+              url: 'ajax/infoJoueur/',
+              data: { 'id' : id},
+              dataType: 'json',
+              encode: true
+          }).done(function(data) {
+            console.log(data)
+            alert("aaa")
+          });
+                      };
+
 function remplirModifier(id){  // CLICK SUPPRIMER
 
     $.ajax({  // AJAX SUPPRESSION
@@ -288,13 +302,13 @@ $("#modifForm").submit(function( event ) {
                 encode: true
             }).done(function(data) {
                 console.log(data)
-               /*$('#id_id_joueur').val(data.id);
+               $('#id_id_joueur').val(data.id);
                $('#id_nom').val(data.nom);
                $('#id_prenom').val(data.prenom);
                $('#id_age').val(data.age);
                $('#id_taille').val(data.taille);
                $('#id_poste').val(data.poste);
-               $('#id_disponible').val(data.disponible);*/
+               $('#id_disponible').val(data.disponible);
 
             });
 
