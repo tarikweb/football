@@ -110,10 +110,10 @@
         </button>
       </div>
       <div class="modal-body">
-           <form id="modifForm" action="{% url "modifier" %}" method="POST">
+           <form id="modifierForm" action="{% url "modifier" %}" method="POST">
             {% csrf_token %}
             <!--<input type="hidden" name="id_joueur" id="id_id_joueur">-->
-            {{ formEquipe.as_p }}
+            {{ formJoueur.as_p }}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

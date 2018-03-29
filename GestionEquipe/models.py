@@ -150,17 +150,17 @@ class Equipe(models.Model):
 
 
 class Joueur(models.Model):
-    id_joueur = models.AutoField(db_column='Id_Joueur', primary_key=True)  # Field name made lowercase.
-    j_nom = models.CharField(db_column='J_Nom', max_length=255)  # Field name made lowercase.
-    j_prenom = models.CharField(db_column='J_Prenom', max_length=255)  # Field name made lowercase.
-    j_age = models.IntegerField(db_column='J_Age')  # Field name made lowercase.
-    j_taille = models.IntegerField(db_column='J_Taille')  # Field name made lowercase.
-    j_poste = models.CharField(db_column='J_Poste', max_length=255)  # Field name made lowercase.
-    j_status = models.CharField(db_column='J_Status', max_length=10)  # Field name made lowercase.
-    j_disponible = models.IntegerField(db_column='J_Disponible')  # Field name made lowercase.
-    j_position = models.IntegerField(db_column='J_Position')  # Field name made lowercase.
-    id_equipe = models.ForeignKey(Equipe, models.DO_NOTHING, db_column='Id_Equipe')  # Field name made lowercase.
-    id_statistique = models.ForeignKey('Statistiques', models.DO_NOTHING, db_column='Id_Statistique', blank=True, null=True)  # Field name made lowercase.
+    id_joueur = models.AutoField(db_column='Id_Joueur', primary_key=True,verbose_name="Id Joueur")  # Field name made lowercase.
+    j_nom = models.CharField(db_column='J_Nom', max_length=255,verbose_name="Nom")  # Field name made lowercase.
+    j_prenom = models.CharField(db_column='J_Prenom', max_length=255,verbose_name="Prénom")  # Field name made lowercase.
+    j_age = models.IntegerField(db_column='J_Age',verbose_name="Age")  # Field name made lowercase.
+    j_taille = models.IntegerField(db_column='J_Taille',verbose_name="Taille")  # Field name made lowercase.
+    j_poste = models.CharField(db_column='J_Poste', max_length=255,verbose_name="Poste")  # Field name made lowercase.
+    j_status = models.CharField(db_column='J_Status', max_length=10,verbose_name="Status")  # Field name made lowercase.
+    j_disponible = models.IntegerField(db_column='J_Disponible',verbose_name="Disponible")  # Field name made lowercase.
+    j_position = models.IntegerField(db_column='J_Position',verbose_name="Position")  # Field name made lowercase.
+    id_equipe = models.ForeignKey(Equipe, models.DO_NOTHING, db_column='Id_Equipe',verbose_name="Nom Equipe")  # Field name made lowercase.
+    id_statistique = models.ForeignKey('Statistiques', models.DO_NOTHING, db_column='Id_Statistique', blank=True, null=True,verbose_name="Id Statistique")  # Field name made lowercase.
 
     class Meta:
         managed = False

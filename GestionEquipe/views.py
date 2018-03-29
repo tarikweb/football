@@ -27,12 +27,10 @@ from .forms import ajouterForm
 # Create your views here.
 
 def home(request):
-    """ Exemple de page HTML, non valide pour que l'exemple soit concis """
 
-    text = """<h1>Bienvenue sur mon blog !</h1>
-              <p>Les crêpes bretonnes ça tue des mouettes en plein vol !</p>"""
     joueurs = Joueur.objects.all().filter()
-    formAjouter=ajouterForm(request.POST)
+    formJoueur = modifierForm(request.POST)
+    formAjouter= ajouterForm(request.POST)
 
     #return HttpResponse(text)
     return render(request,'GestionEquipe/visu.html',locals())
@@ -97,9 +95,7 @@ def infoJoueur(request):
 
 
 def Accueil(request):
-    """ Exemple de page HTML, non valide pour que l'exemple soit concis """
-    text = """<h1>Bienvenue sur mon blog !</h1>
-              <p>Les crêpes bretonnes ça tue des mouettes en plein vol !</p>"""
+
     #return HttpResponse(text)
     return render(request,'GestionEquipe/Accueil.html',locals())
 
