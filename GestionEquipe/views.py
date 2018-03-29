@@ -82,6 +82,7 @@ def infoJoueur(request):
         taille=joueur.j_taille
         poste=joueur.j_poste
         disponible=joueur.j_disponible
+        position=joueur.j_position
 
     return JsonResponse({
             'id' : id,
@@ -91,6 +92,7 @@ def infoJoueur(request):
             'taille' : taille,
             'poste' : poste,
             'disponible' : disponible,
+            'position' :position,
             })
 
 

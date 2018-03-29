@@ -20,7 +20,6 @@
     <tr num="{{ joueur.id_joueur }}">
         <td> {{ joueur.j_poste }} </td>
         <td> {{ joueur.j_nom }} </td>
-        <td> {{ joueur.id_equipe }} </td>
 
         <!--- <td> {{ joueur.status }} </td> -->
 
@@ -162,8 +161,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-         ...
+      <div class="modal-body" id="blockInfo">
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -264,8 +263,14 @@ function infoJoueur(id){  // CLICK SUPPRIMER
               dataType: 'json',
               encode: true
           }).done(function(data) {
-            console.log(data)
-            alert("aaa")
+            $("#blockInfo").empty()
+            $("#blockInfo").append("<p>Nom :"+data.nom+"</p>")
+            $("#blockInfo").append("<p>Prénom :"+data.prenom+"</p>")
+            $("#blockInfo").append("<p>Age :"+data.age+"</p>")
+            $("#blockInfo").append("<p>Taille :"+data.taille+"</p>")
+            $("#blockInfo").append("<p>Poste :"+data.poste+"</p>")
+            $("#blockInfo").append("<p>Position :"+data.position+"</p>")
+
           });
                       };
 
