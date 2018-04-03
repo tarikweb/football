@@ -9,7 +9,7 @@ body {
 	background-repeat : no-repeat;
 	background-size: 100% 100%;
 }
-	
+
 h1 {
 	font-size:40px;
 	text-align:center;
@@ -21,7 +21,7 @@ header {
  text-align:center;
 }
 footer {
-	
+
 	height:40px;
 	padding-top : 10px;
 	text-align:center;
@@ -47,14 +47,14 @@ a:hover{
   	text-decoration: none;
 }
 
-	
+
 nav
 {
 	display: inline-block;
 	width:100%;
 	#background-color:green;
 	left:auto;
-	
+
 }
 
 nav li{
@@ -76,29 +76,29 @@ nav > ul::after
 	display:block;
 	clear:both;
 }
-nav > ul > li 
+nav > ul > li
 {
 	float: left;
 	position:relative;
 }
-nav > ul > li > a 
+nav > ul > li > a
 {
 	padding: 20px 30px;
 	color:#FFF;
 
 }
-nav li 
+nav li
 {
-	list-style-type:none; 
+	list-style-type:none;
 }
-.submenu 
+.submenu
 {
 	display:none;
 }
 
-nav a 
+nav a
 {
-	
+
 	display: inline-block;
 	text-decoration :none;
 	padding:0px 30px;
@@ -140,10 +140,10 @@ nav li:hover .submenu
 {
 	border-top: 5px solid #F69;
 	background-color: RGBa(228,77,38,0,15);}
-	
+
 .com { font-size:16px;
 font-family:Tahoma, Geneva, sans-serif;
-color:blue; 
+color:blue;
 
  }
 
@@ -170,4 +170,7 @@ color:blue;
 #composition{
 	width:50%;
     margin-left:10%;
+}
+.errorlist {
+    display: none;
 }
