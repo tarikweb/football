@@ -109,6 +109,8 @@ def modifierRemplir(request):
         taille=joueur.j_taille
         poste=joueur.j_poste
         disponible=joueur.j_disponible
+        status=joueur.j_status
+        position=joueur.j_position
 
     return JsonResponse({
             'id' : id,
@@ -118,18 +120,22 @@ def modifierRemplir(request):
             'taille' : taille,
             'poste' : poste,
             'disponible' : disponible,
+            'status': status,
+            'position': position,
             })
 
 def modifier(request):
     #id=request.POST.get('donnees', None)
+    id_joueur=int(request.POST.get('id_joueur', None))
     formEquipe= modifierForm(request.POST)
     if formEquipe.is_valid():
-        test=formEquipe.save()
+        testos= Joueur.objects.get(pk=id_joueur)
+        test=modifierForm(request.POST, instance = testos)
         test.save()
         reponse="ok"
+        return redirect('../../GestionEquipe')
     else:
-        reponse="nannn"
-    return JsonResponse({'reponse' : reponse})
+        return JsonResponse({'reponse' : 'erreur'})
 
 def ajouter(request):
     #id=request.POST.get('donnees', None)
