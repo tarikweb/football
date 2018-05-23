@@ -7,6 +7,9 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
 from django.conf import settings
+from django.contrib.auth import logout
+from django.shortcuts import render
+from django.core.urlresolvers import reverse
 
 from GestionEquipe.models import Joueur
 from GestionEquipe.models import Equipe
@@ -21,6 +24,8 @@ from django.views.decorators.csrf import csrf_exempt
 from .forms import classementForm
 from .forms import modifierForm
 from .forms import ajouterForm
+from .forms import ConnexionForm
+from django.contrib.auth import authenticate, login
 
 
 #test
@@ -96,8 +101,22 @@ def infoJoueur(request):
 
 def Accueil(request):
 
-    #return HttpResponse(text)
-    return render(request,'GestionEquipe/Accueil.html',locals())
+    error = False
+
+    if request.method == "POST":
+        form = ConnexionForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            user = authenticate(username=username, password=password)  # Nous vérifions si les données sont correctes
+            if user:  # Si l'objet renvoyé n'est pas None
+                login(request, user)  # nous connectons l'utilisateur
+            else: # sinon une erreur sera affichée
+                error = True
+    else:
+        form = ConnexionForm()
+
+    return render(request, 'Accueil.html', locals())
 
 def modifierRemplir(request):
     id=request.POST.get('id', None)
@@ -148,29 +167,33 @@ def ajouter(request):
     return redirect('../../GestionEquipe/GestionEquipe')
 
 
-
-class LoginView(TemplateView):
-
-  template_name = '/template/GestionEquipe/Accueil.html'
-
-  def post(self, request, **kwargs):
-
-    username = request.POST.get('username', False)
-    password = request.POST.get('password', False)
-    user = authenticate(username=username, password=password)
-    if user is not None and user.is_active:
-        login(request, user)
-        return HttpResponseRedirect( settings.LOGIN_REDIRECT_URL )
-
-    return render(request, self.template_name)
-
-
-class LogoutView(TemplateView):
-
-  template_name = '/template/GestionEquipe/Accueil.html'
-
-  def get(self, request, **kwargs):
-
+def deconnexion(request):
     logout(request)
+    return redirect(reverse(Accueil))
 
-    return render(request, self.template_name)
+#
+# class LoginView(TemplateView):
+#
+#   template_name = '/template/GestionEquipe/Accueil.html'
+#
+#   def post(self, request, **kwargs):
+#
+#     username = request.POST.get('username', False)
+#     password = request.POST.get('password', False)
+#     user = authenticate(username=username, password=password)
+#     if user is not None and user.is_active:
+#         login(request, user)
+#         return HttpResponseRedirect( settings.LOGIN_REDIRECT_URL )
+#
+#     return render(request, self.template_name)
+#
+#
+# class LogoutView(TemplateView):
+#
+#   template_name = '/template/GestionEquipe/Accueil.html'
+#
+#   def get(self, request, **kwargs):
+#
+#     logout(request)
+#
+#     return render(request, self.template_name)

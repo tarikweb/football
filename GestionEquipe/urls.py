@@ -14,5 +14,7 @@ urlpatterns = [
     url(r'^ajax/modifier/$', views.modifier, name='modifier'),
     url(r'^ajouter/$', views.ajouter, name='ajouter'),
     url(r'^classement$', views.classement, name='classement'),
+    url(r'^classement$', views.classement, name='classement'),
+    url(r'^deconnexion$', views.deconnexion, name='deconnexion'),
 
     ]

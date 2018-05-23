@@ -3,38 +3,29 @@
 
 
 
-  
-{% block content %} 
+
+{% block content %}
 <h1> bienvenue sur la page d'accueil</h1>
 <h2> Se connecter </h2>
 
-<form method="post"  role="form" action="/admin/login/?next=/admin/">
-{% csrf_token %}
-<input type="text" name="username" placeholder="Utilisateur">
-<input type="password" name="password" placeholder="Mot de passe">
-<input type="submit" value="Se connecter" />
-{% csrf_token %}
-
-    {{ form.as_p }}
-
-</form>
-
-
 {% if error %}
-
-<p><strong>Nom d'utilisateur ou mot de passe incorrect</strong></p>
-
+<p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
 {% endif %}
-
 
 {% if user.is_authenticated %}
-
-Vous êtes connecté, {{ user.id}} !
-
+Vous êtes connecté, {{ user.username }} ! {{ user.id}} !
+<form method="post" action="deconnexion">
+    {% csrf_token %}
+    <input type="submit" value="Se deconnecter" />
+</form>
 {% else %}
-
-
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Se connecter" />
+</form>
 {% endif %}
+
 {% endblock %}
 
 </body>
