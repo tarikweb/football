@@ -13,20 +13,22 @@
 {% endif %}
 
 {% if user.is_authenticated %}
-Vous êtes connecté, {{ user.username }} ! {{ user.id}} !
+Vous êtes connecté, {{ user.username }} !!!
 <form method="post" action="deconnexion">
     {% csrf_token %}
-    <input type="submit" value="Se deconnecter" />
+    <input type="submit" value="Se deconnecter"/>
 </form>
 {% else %}
-<form method="post" action="{% url "GestionEquipe" %}">
+<form method="post" action="">
   <!-- {% url "GestionEquipe" %} -->
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Se connecter" />
 </form>
 {% endif %}
-
+<!-- <script>
+  var id = {{ user.id}};
+</script> -->
 {% endblock %}
 
 </body>

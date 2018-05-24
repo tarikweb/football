@@ -16,7 +16,7 @@ from GestionEquipe.models import Equipe
 from GestionEquipe.models import Statistiques
 from GestionEquipe.models import Arbitre
 from GestionEquipe.models import Entraineur
-from GestionEquipe.models import Entraineur
+from GestionEquipe.models import AuthUser
 
 
 from pprint import pprint
@@ -28,16 +28,20 @@ from .forms import ConnexionForm
 from django.contrib.auth import authenticate, login
 
 
+
 #test
 # Create your views here.
 
 def home(request):
+    if request.user.is_authenticated:
+        # joueurs = Joueur.objects.all().filter()
+        joueurs = Joueur.objects.all().filter()
+        formJoueur = modifierForm(request.POST)
+        formAjouter= ajouterForm(request.POST)
+    else  :
+        return HttpResponse("<p>Vous n'etes pas autoriser à acceder à cette page</p>")
 
-    joueurs = Joueur.objects.all().filter()
-    formJoueur = modifierForm(request.POST)
-    formAjouter= ajouterForm(request.POST)
 
-    #return HttpResponse(text)
     return render(request,'GestionEquipe/visu.html',locals())
 
 def classement(request):
@@ -115,6 +119,7 @@ def Accueil(request):
                 error = True
     else:
         form = ConnexionForm()
+
 
     return render(request, 'Accueil.html', locals())
 
