@@ -35,7 +35,8 @@ from django.contrib.auth import authenticate, login
 def home(request):
     if request.user.is_authenticated:
         # joueurs = Joueur.objects.all().filter()
-        joueurs = Joueur.objects.all().filter()
+
+        joueurs = Joueur.objects.all().filter(id_equipe=request.user.id)
         formJoueur = modifierForm(request.POST)
         formAjouter= ajouterForm(request.POST)
     else  :

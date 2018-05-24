@@ -5,6 +5,7 @@
 
 {% block content %}
 
+{{user.id}}
 <h1>Gestion d'équipe</h1>
 <br> </br>
 <div id="corps">
@@ -16,7 +17,7 @@
         <th colspan="2">Nom</th>
     </tr>
 {% for joueur in joueurs %}
-    {% if joueur.j_status == "Titulaire" %}
+    {% if joueur.j_status == "Titulaire"%}
     <tr num="{{ joueur.id_joueur }}">
         <td> {{ joueur.j_poste }} </td>
         <td> {{ joueur.j_nom }} </td>

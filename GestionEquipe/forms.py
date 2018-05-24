@@ -22,7 +22,7 @@ class ajouterForm(forms.ModelForm):
 
 		model = Joueur
 		fields = '__all__'
-		exclude = ['id_joueur','id_statistique']
+		exclude = ['id_joueur','id_statistique','id_equipe']
 		#exclude = ['status', 'id_equipe','position']
 
 class ConnexionForm(forms.Form):
