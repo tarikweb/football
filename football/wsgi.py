@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/
 import os
 import sys
 
-sys.path.append("/var/www/football")
+sys.path.append("/home/tarikweb/www/football")
 
 from django.core.wsgi import get_wsgi_application
 

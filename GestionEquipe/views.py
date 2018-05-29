@@ -36,7 +36,8 @@ def home(request):
     if request.user.is_authenticated:
         # joueurs = Joueur.objects.all().filter()
 
-        joueurs = Joueur.objects.all().filter(id_equipe=request.user.id)
+        #joueurs = Joueur.objects.all().filter(id_equipe=request.user.id)
+	joueurs = Joueur.objects.all().filter(id_equipe__id_entraineur=request.user.id)
         formJoueur = modifierForm(request.POST)
         formAjouter= ajouterForm(request.POST)
     else  :
@@ -166,7 +167,10 @@ def ajouter(request):
     #id=request.POST.get('donnees', None)
     formAjouter= ajouterForm(request.POST)
     if formAjouter.is_valid():
-        formAjouter.save()
+	idEquipe=Equipe.objects.get(id_entraineur=request.user.id)
+        envoi=formAjouter.save(commit=False)
+	envoi.id_equipe=idEquipe
+	envoi.save()
         reponse="ok"
     else:
         reponse="nannn"

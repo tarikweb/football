@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'football.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'e4_football',
-        'USER': 'football',            # Utilisateur
+        'NAME': 'tarikweb_e4_football',
+        'USER': 'tarikweb_django',            # Utilisateur
         'PASSWORD': 'password',        # Mot de passe si necessaire
-        'HOST': '127.0.0.1',
+	'HOST': 'mysql-tarikweb.alwaysdata.net',
         'PORT': '',
     }
 }
